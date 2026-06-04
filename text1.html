@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+<body>
+         <h1 id="text1" >welcome student</h1> 
+          <button id="text2" >click</button> 
+</body>
+   <script>
+    let t =document.getElementById("text1")
+    let b =document.getElementById("text2")
+     b.addEventListener("click",fun);
+      function fun (){
+        t.innerHTML="hello";
+        document.body.style.backgroundColor="red";
+
+      }
+
+   </script>
+
+</html>

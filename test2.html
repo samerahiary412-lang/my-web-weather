@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <h3>Enter two numbers</h3>
+
+    <input type="text" id="input1">
+    <input type="text" id="input2">
+
+    <br><br>
+
+    <button id="btn1">Click</button>
+
+    <h2 id="result">The result is:</h2>
+
+    <script>
+        let b = document.getElementById("btn1");
+        let result = document.getElementById("result");
+
+        b.addEventListener("click", fun);
+
+        function fun() {
+            let firstNum = document.getElementById("input1").value;
+            let secondNum = document.getElementById("input2").value;
+
+            let answer = parseInt(firstNum) + parseInt(secondNum);
+
+            result.innerText = "The result is: " + answer;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+@layer global {
+  /* Modernized theme and improved spacing for a clean UI */
+  @font-face { font-family: "DM Sans"; font-weight: 300; src: url("/assets/fonts/dm-sans-v16-latin-300.woff2") format("woff2"); font-style: normal; font-display: swap; }
+  @font-face { font-family: "DM Sans"; font-weight: 500; src: url("/assets/fonts/dm-sans-v16-latin-500.woff2") format("woff2"); font-style: normal; font-display: swap; }
+  @font-face { font-family: "DM Sans"; font-weight: 700; src: url("/assets/fonts/dm-sans-v16-latin-700.woff2") format("woff2"); font-style: normal; font-display: swap; }
+  @font-face { font-family: "Bricolage Grotesque"; font-weight: 700; src: url("/assets/fonts/bricolage-grotesque-v8-latin-700.woff2") format("woff2"); font-style: normal; font-display: swap; }
+
+  :root{
+    --bg-900: #0f1724; /* deep navy */
+    --panel-800: #111827; /* dark panel */
+    --panel-700: #172033;
+    --muted-300: #9aa6b2;
+    --muted-200: #c8d0d6;
+    --accent: #4f46e5; /* indigo */
+    --accent-2: #06b6d4; /* cyan */
+    --glass: rgba(255,255,255,0.04);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --max-width: 1100px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg-900) 0%, #071626 100%);
+    color: #e6eef6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.35;
+    padding:48px 16px 96px;
+  }
+
+  .wrapper{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+  a{color:inherit;text-decoration:none}
+
+  img{display:block;max-width:100%;height:auto}
+
+  .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+  input,button,select,textarea{font:inherit}
+
+  .block{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));border-radius:var(--radius-md);border:1px solid rgba(255,255,255,0.04)}
+}
+
+@layer components {
+  /* Header */
+  .header{margin-bottom:28px}
+  .header__content{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .header__logo{height:40px;width:auto}
+  .header__homelink{display:flex;align-items:center}
+  .header__dropdown{appearance:none;padding:10px 14px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:var(--muted-200);min-width:92px}
+
+  /* Hero */
+  .hero__content{display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;padding:24px 0 40px}
+  .hero__title{font-family:"Bricolage Grotesque","DM Sans",sans-serif;font-size:clamp(28px,4.5vw,48px);line-height:1.05;color:#f8fbff}
+  .hero__search{width:100%;max-width:760px;display:flex;gap:12px}
+  .hero__textbox{flex:1;background:rgba(255,255,255,0.03);padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);color:var(--muted-200);box-shadow:0 6px 18px rgba(2,6,23,0.6);background-image:url('assets/images/icon-search.svg');background-repeat:no-repeat;background-position:14px center;padding-left:48px}
+  .hero__textbox::placeholder{color:var(--muted-300)}
+  .hero__textbox:focus{outline:2px solid rgba(79,70,229,0.16);box-shadow:0 6px 18px rgba(79,70,229,0.06)}
+  .hero__button{background:linear-gradient(180deg,var(--accent),#3f3cd9);color:#fff;padding:12px 18px;border-radius:10px;border:none;min-width:110px;box-shadow:0 8px 24px rgba(79,70,229,0.18);cursor:pointer}
+  .hero__button:hover{transform:translateY(-1px)}
+
+  /* Dashboard layout: responsive two-column on large screens */
+  .dashboard{display:grid;gap:24px;grid-template-columns:1fr;align-items:start}
+  @media(min-width:1000px){.dashboard{grid-template-columns:1fr 520px}}
+
+  /* Current weather panel */
+  .current__weather{display:flex;flex-direction:column;gap:18px;padding:28px;border-radius:18px;background:linear-gradient(180deg,rgba(6,182,212,0.08),rgba(79,70,229,0.06));backdrop-filter:blur(6px);box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.04)}
+  @media(min-width:1000px){.current__weather{flex-direction:row;align-items:center;justify-content:space-between;padding:36px}}
+
+  .current__location{text-align:left}
+  .current__city{font-size:clamp(18px,2vw,28px);font-weight:700;color:#f4f8ff}
+  .current__date{font-size:14px;color:var(--muted-300)}
+
+  .current__info{display:flex;align-items:center;gap:18px}
+  .current__icon{width:110px;height:auto;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.6))}
+  .current__temp{font-size:clamp(48px,7vw,88px);font-weight:700;font-style:normal;color:#fff}
+
+  .current__conditions{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:6px}
+  @media(min-width:700px){.current__conditions{grid-template-columns:repeat(4,1fr)}}
+  .current__condition{padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+  .current__condition-title{font-size:13px;color:var(--muted-300);margin-bottom:8px}
+  .current__condition-value{font-size:18px;font-weight:600;color:#fff}
+
+  /* Daily forecast */
+  .daily__title{font-size:18px;margin-bottom:12px;color:#eaf2ff}
+  .daily__forecast{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(min-width:700px){.daily__forecast{grid-template-columns:repeat(7,1fr)}}
+  .daily__day{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+  .daily__day-title{font-size:14px;color:var(--muted-200)}
+  .daily__day-icon{width:52px}
+  .daily__day-temps{width:100%;display:flex;justify-content:space-between;gap:8px;font-size:14px}
+  .daily__day-high{font-weight:700}
+  .daily__day-low{color:var(--muted-300)}
+
+  /* Small improvements */
+  .header__dropdown,.hero__button{transition:transform .12s ease,box-shadow .12s ease}
+}
